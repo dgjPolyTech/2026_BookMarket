@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 @RequestMapping(value="/books") // 루트 url
@@ -38,6 +40,16 @@ public class BookController {
         return "books";
     }
 
+    //
+    @GetMapping("/filter/{bookFilter}")
+    public String requestBookByFilter(@MatrixVariable(pathVar = "bookFilter")Map<String, List<String>> bookFilter, Model model){
+        Set<Book> booksByFilter = bookService.getBookListByFilter(bookFilter);
+        model.addAttribute("bookList", booksByFilter); // {} 안에 쓴 키워드가 저장된다.
+
+        return "books";
+    }
+
+    // all은 실제로는 많이 쓰지는 않는다 캄.
     @GetMapping("/all") // all 사용 시 모든 책 가져옴.
     public ModelAndView requestAllBooks() {
         ModelAndView modelAndView = new ModelAndView();

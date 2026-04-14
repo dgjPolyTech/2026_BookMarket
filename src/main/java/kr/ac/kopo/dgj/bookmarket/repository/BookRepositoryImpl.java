@@ -13,9 +13,9 @@ public class BookRepositoryImpl implements BookRepository{ // bookRepository 인
     public BookRepositoryImpl() { // 이런 생성자는 alt+insert로 간단히 추가 가능하다.
         Book book1 = new Book();
         book1.setBookId("isbn1001");
-        book1.setName("스프링부트 완전 정복");
+        book1.setName("스프링부트완전정복");
         book1.setDescription("ㅋㅋㅋㅋㅋ");
-        book1.setPublisher("길벗 캠퍼스");
+        book1.setPublisher("길벗캠퍼스");
         book1.setCategory("IT전문서");
         book1.setAuthor("송미영");
         book1.setUnitPrice(new BigDecimal(35000));
@@ -23,9 +23,9 @@ public class BookRepositoryImpl implements BookRepository{ // bookRepository 인
 
         Book book2 = new Book();
         book2.setBookId("isbn1002");
-        book2.setName("데이터베이스 개론");
+        book2.setName("데이터베이스개론");
         book2.setDescription("ㅎㅎㅎㅎㅎ");
-        book2.setPublisher("한빛 아카데미");
+        book2.setPublisher("한빛아카데미");
         book2.setCategory("IT교육교재");
         book2.setAuthor("이연희");
         book2.setUnitPrice(new BigDecimal(25000));
@@ -35,7 +35,7 @@ public class BookRepositoryImpl implements BookRepository{ // bookRepository 인
         book3.setBookId("isbn1003");
         book3.setName("자바자바");
         book3.setDescription("ㅇㅇㅇㅇㅇ");
-        book3.setPublisher("한빛 아카데미");
+        book3.setPublisher("한빛아카데미");
         book3.setCategory("IT교육교재");
         book1.setAuthor("도경진");
         book3.setUnitPrice(new BigDecimal(125000));
