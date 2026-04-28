@@ -15,4 +15,5 @@ public interface BookService {
 
     Set<Book> getBookListByFilter(Map<String, List<String>> filter); // 키:값 형태로 가져온다.
 
+    void setNewBook(Book book);
 }

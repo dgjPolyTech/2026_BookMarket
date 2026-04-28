@@ -49,6 +49,23 @@ public class BookController {
         return "books";
     }
 
+    @GetMapping("/add")
+    public String requestAddBookForm() {
+        return "addBook";
+    }
+
+    @PostMapping("/add")
+    public String submitAddNewBook(@ModelAttribute Book book) {
+        bookService.setNewBook(book);
+//        return "books"; << 이렇게 RETURN으로 쓰는 건 안됨.
+        return "redirect:/books";
+    }
+
+    @ModelAttribute
+    public void addAttributes(Model model) {
+        model.addAttribute("addTitle", "신규 도서 등록");
+    }
+
     // all은 실제로는 많이 쓰지는 않는다 캄.
     @GetMapping("/all") // all 사용 시 모든 책 가져옴.
     public ModelAndView requestAllBooks() {

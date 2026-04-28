@@ -8,9 +8,12 @@ import java.util.*;
 
 @Repository
 public class BookRepositoryImpl implements BookRepository{ // bookRepository 인터페이스를 사용하는 만큼, 인터페이스에 구현된 메소드를 모두 구현해야 한다.
+    // 이름 그대로 Book 속성의 데이터들을 저장하는 List
     private List<Book> listOfBooks = new ArrayList<Book>();
 
-    public BookRepositoryImpl() { // 이런 생성자는 alt+insert로 간단히 추가 가능하다.
+    // 이런 생성자는 alt+insert로 간단히 추가 가능하다.
+    public BookRepositoryImpl() {
+        // 생성자 함수 안에 리스트에 데이터를 넣는 작업을 넣어서 레포지토리 생성 시마다 기초 데이터 들어가게끔 함.(아직 DB 연계를 하지 않았으므로)
         Book book1 = new Book();
         book1.setBookId("isbn1001");
         book1.setName("스프링부트완전정복");
@@ -37,7 +40,7 @@ public class BookRepositoryImpl implements BookRepository{ // bookRepository 인
         book3.setDescription("ㅇㅇㅇㅇㅇ");
         book3.setPublisher("한빛아카데미");
         book3.setCategory("IT교육교재");
-        book1.setAuthor("도경진");
+        book3.setAuthor("도경진");
         book3.setUnitPrice(new BigDecimal(125000));
         book3.setReleaseDate("2025/03/17");
 
@@ -66,6 +69,7 @@ public class BookRepositoryImpl implements BookRepository{ // bookRepository 인
 
         if(book == null) {
             // book을 찾지 못했으면, 목록에 없다는 소리이므로 강제로 오류를 발생시킨다.
+            // IllegalArugment 예외는 "제공된 인자가 잘못됨"이라는 의미의 예외. "목록에 없는 인자"를 주었으므로 잘못된 인자로 판단함.
             throw new IllegalArgumentException("도서ID가 "+bookId+"인 도서를 찾을 수가 없습니다.");
         }
 
@@ -110,5 +114,10 @@ public class BookRepositoryImpl implements BookRepository{ // bookRepository 인
         booksByCategory.retainAll(booksByPublisher);
 
         return booksByCategory;
+    }
+
+    @Override
+    public void setNewBook(Book book) {
+        listOfBooks.add(book);
     }
 }
