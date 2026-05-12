@@ -23,6 +23,7 @@ public class BookRepositoryImpl implements BookRepository{ // bookRepository 인
         book1.setAuthor("송미영");
         book1.setUnitPrice(new BigDecimal(35000));
         book1.setReleaseDate("2024/12/31");
+        book1.setFileName("isbn1001.png");
 
         Book book2 = new Book();
         book2.setBookId("isbn1002");
@@ -33,16 +34,18 @@ public class BookRepositoryImpl implements BookRepository{ // bookRepository 인
         book2.setAuthor("이연희");
         book2.setUnitPrice(new BigDecimal(25000));
         book2.setReleaseDate("2022/01/15");
+        book2.setFileName("isbn1002.png");
 
         Book book3 = new Book();
         book3.setBookId("isbn1003");
-        book3.setName("자바자바");
+        book3.setName("자바프로그래밍입문");
         book3.setDescription("ㅇㅇㅇㅇㅇ");
         book3.setPublisher("한빛아카데미");
         book3.setCategory("IT교육교재");
         book3.setAuthor("도경진");
         book3.setUnitPrice(new BigDecimal(125000));
         book3.setReleaseDate("2025/03/17");
+        book3.setFileName("isbn1003.png");
 
         listOfBooks.add(book1);
         listOfBooks.add(book2);
