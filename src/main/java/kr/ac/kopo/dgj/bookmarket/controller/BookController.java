@@ -1,5 +1,7 @@
 package kr.ac.kopo.dgj.bookmarket.controller;
 
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletResponse;
 import kr.ac.kopo.dgj.bookmarket.domain.Book;
 import kr.ac.kopo.dgj.bookmarket.BookService.BookService;
 import org.apache.juli.logging.Log;
@@ -7,12 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -82,7 +87,25 @@ public class BookController {
         model.addAttribute("addTitle", "신규 도서 등록");
     }
 
+    @GetMapping("/download")
+    public void downLoadBookImage(@RequestParam("file") String paramKey, HttpServletResponse response) {
+        File imgFile = new File(fileDir + paramKey);
 
+        response.setContentType("application/download");
+        response.setContentLength((int) imgFile.length());
+        response.setHeader("Content-Disposition", "attachment;filename=\"" + paramKey + "\"");
+
+        try {
+            OutputStream out = response.getOutputStream();
+            FileInputStream fileIn = new FileInputStream(imgFile);
+            FileCopyUtils.copy(fileIn, out);
+            fileIn.close();
+            out.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
     @GetMapping("/all")
     public ModelAndView requestAllBooks(){
