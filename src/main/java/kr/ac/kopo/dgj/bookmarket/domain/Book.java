@@ -12,15 +12,15 @@ import java.math.BigDecimal;
 @Data
 public class Book {
     @BookId
-    @Pattern(regexp = "isbn[1-9]+")
+    @Pattern(regexp = "isbn[1-9]+", message = "{Pattern.book.bookId}")
     private String bookId; // 도서 번호
 
-    @Size(min = 4, max = 50)
+    @Size(min = 4, max = 50, message = "{Size.book.name}")
     private String name; // 도서명
 
-    @Min(value = 0)
-    @Digits(integer = 8, fraction = 2) //최대 8자리, 소수점은 둘째자리까지.
-    @NotNull
+    @Min(value = 0, message = "{Min.book.unitPrice}")
+    @Digits(integer = 8, fraction = 2, message = "{Digits.book.unitPrice}") //최대 8자리, 소수점은 둘째자리까지.
+    @NotNull(message = "{NotNull.book.unitPrice}")
     private BigDecimal unitPrice; // 도서 가격(
 
     private String author; // 저자명
