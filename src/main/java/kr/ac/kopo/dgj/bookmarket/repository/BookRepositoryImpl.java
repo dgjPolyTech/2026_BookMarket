@@ -1,6 +1,7 @@
 package kr.ac.kopo.dgj.bookmarket.repository;
 
 import kr.ac.kopo.dgj.bookmarket.domain.Book;
+import kr.ac.kopo.dgj.bookmarket.exception.BookIdException;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -70,10 +71,14 @@ public class BookRepositoryImpl implements BookRepository{ // bookRepository 인
             }
         }
 
+//        if(book == null) {
+//            // book을 찾지 못했으면, 목록에 없다는 소리이므로 강제로 오류를 발생시킨다.
+//            // IllegalArugment 예외는 "제공된 인자가 잘못됨"이라는 의미의 예외. "목록에 없는 인자"를 주었으므로 잘못된 인자로 판단함.
+//            throw new IllegalArgumentException("도서ID가 "+bookId+"인 도서를 찾을 수가 없습니다.");
+//        }
+
         if(book == null) {
-            // book을 찾지 못했으면, 목록에 없다는 소리이므로 강제로 오류를 발생시킨다.
-            // IllegalArugment 예외는 "제공된 인자가 잘못됨"이라는 의미의 예외. "목록에 없는 인자"를 주었으므로 잘못된 인자로 판단함.
-            throw new IllegalArgumentException("도서ID가 "+bookId+"인 도서를 찾을 수가 없습니다.");
+            throw new BookIdException(bookId);
         }
 
         return book;
