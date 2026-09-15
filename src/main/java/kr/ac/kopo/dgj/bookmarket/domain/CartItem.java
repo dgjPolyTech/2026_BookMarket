@@ -11,6 +11,7 @@ import java.util.Map;
 @ToString
 public class CartItem {
     private Book book; //도서정보
+    private Cart cart;
     private int quantity; //수량
     private BigDecimal totalPrice; //단위가격*수량
 
