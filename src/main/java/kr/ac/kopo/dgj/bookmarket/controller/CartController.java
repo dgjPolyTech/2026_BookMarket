@@ -86,4 +86,10 @@ public class CartController {
 
         cartService.update(sessionId, cart);
     }
+
+    @DeleteMapping("/{cartId}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteCartList(@PathVariable("cartId") String cartId) {
+        cartService.delete(cartId);
+    }
 }
